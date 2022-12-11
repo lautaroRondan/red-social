@@ -1,0 +1,62 @@
+import React from 'react';
+import avatar from '../../../assets/img/user.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRightFromBracket, faGear, faHouse, faList, faUser } from '@fortawesome/free-solid-svg-icons'
+
+export const Nav = () => {
+    return (
+        <nav className="navbar__container-lists">
+
+            <ul className="container-lists__menu-list">
+                <li className="menu-list__item">
+                    <a href="#" className="menu-list__link">
+                        <FontAwesomeIcon icon={faHouse} />
+                        <span className="menu-list__title">Inicio</span>
+                    </a>
+                </li>
+
+                <li className="menu-list__item">
+                    <a href="#" className="menu-list__link">
+                        <FontAwesomeIcon icon={faList} />
+                        <span className="menu-list__title">Timeline</span>
+                    </a>
+                </li>
+
+                <li className="menu-list__item">
+                    <a href="#" className="menu-list__link">
+                        <FontAwesomeIcon icon={faUser} />
+                        <span className="menu-list__title">Gente</span>
+                    </a>
+                </li>
+
+            </ul>
+
+            <ul className="container-lists__list-end">
+                <li className="list-end__item">
+                    <a href="#" className="list-end__link-image">
+                        <img src={avatar} className="list-end__img" alt="Imagen de perfil" />
+                    </a>
+                </li>
+                <li className="list-end__item">
+                    <a href="#" className="list-end__link">
+                        <span className="list-end__name">Nick</span>
+                    </a>
+                </li>
+                <li className="list-end__item">
+                    <a href="#" className="list-end__link">
+                        <FontAwesomeIcon icon={faGear} />
+                        <span className="list-end__name">Ajustes</span>
+                    </a>
+                </li>
+                <li className="list-end__item">
+                    <a href="#" className="list-end__link">
+                        <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                        <span className="list-end__name">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    )
+}
+
