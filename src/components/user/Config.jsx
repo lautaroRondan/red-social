@@ -9,6 +9,7 @@ export const Config = () => {
 
   const { auth, setAuth } = useAuth();
   const [saved, setSaved] = useState("not_sended");
+  const urlImg = "https://res.cloudinary.com/diop3sm01/image/upload/v1670818379/avatar/user_ax4fkd.png"
 
   const updateUser = async (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ export const Config = () => {
     let newDataUser = serializeForm(e.target);
     const token = localStorage.getItem("token");
 
-    const { datos } = await PetitionFetchToken(Global.url + "user/update", "PUT", token , newDataUser);
+    const { datos } = await PetitionFetchToken(Global.url + "user/update", "PUT", token, newDataUser);
 
     if (datos.status === "success") {
 
@@ -76,7 +77,12 @@ export const Config = () => {
           <div className='form-group'>
             <label htmlFor='file0'>Avatar</label>
             <div className='avatar'>
-              {/* mostrar imagen */}
+              <a href="#" className="post__image-link">
+                {!auth.image &&
+                  <img src={urlImg} className="post__user-image" alt="Foto de perfil" />
+                }
+                <img src={auth.image} className="post__user-image" alt="Foto de perfil" />
+              </a>
             </div>
             <input type="file" name="file0" />
           </div>

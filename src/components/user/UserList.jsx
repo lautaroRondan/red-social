@@ -6,6 +6,7 @@ import { Global } from '../../helpers/Global';
 export const UserList = ({users, getUser , following, setFollowing, page, setPage, more}) => {
 
     const { auth } = useAuth();
+    const urlImg = "https://res.cloudinary.com/diop3sm01/image/upload/v1670818379/avatar/user_ax4fkd.png"
 
     const nextPage = () => {
         let next = page + 1;
@@ -50,7 +51,10 @@ export const UserList = ({users, getUser , following, setFollowing, page, setPag
 
                                 <div className="post__image-user">
                                     <a href="#" className="post__image-link">
-                                        <img src="assets/img/user.png" className="post__user-image" alt="Foto de perfil" />
+                                        {!user.image && 
+                                        <img src={urlImg} className="post__user-image" alt="Foto de perfil" />
+                                        }
+                                        <img src={user.image} className="post__user-image" alt="Foto de perfil" />
                                     </a>
                                 </div>
 
