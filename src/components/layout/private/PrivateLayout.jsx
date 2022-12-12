@@ -2,8 +2,9 @@ import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import { Header } from './Header'
+import { SideBar } from './SideBar'
 
-export const PublicLayout = () => {
+export const PrivateLayout = () => {
 
     const {auth} = useAuth();
 
@@ -12,11 +13,14 @@ export const PublicLayout = () => {
             <Header />
 
             <section className="layout__content">
-            {!auth ._id ?
+                {auth ._id ?
                     <Outlet/>
-                    : <Navigate to='/social'/>
+                    : <Navigate to='/'/>
                 }
+            
             </section>
+
+            <SideBar/>
         </>
     )
 }
