@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { PetitionFetchToken } from '../../helpers/PetitionFetch';
 import { Global } from '../../helpers/Global';
 import { UserList } from '../user/UserList';
+import { GetProfile } from "../../helpers/GetProfile";
 
 export const Followed = () => {
 
@@ -11,9 +12,12 @@ export const Followed = () => {
     const [page, setPage] = useState(1);
     const [following, setFollowing] = useState([]);
     const [more, setMore] = useState(true);
+    const [userProfile, setUserProfile] = useState({})
+
   const params = useParams();
     useEffect(() => {
       getUser(1);
+      GetProfile(params.userId, setUserProfile)
     }, [])
   
     const getUser = async (nextPage = 1) => {
@@ -50,7 +54,7 @@ export const Followed = () => {
     return (
       <>
         <header className="content__header">
-          <h1 className="content__title">Personas</h1>
+          <h1 className="content__title">Seguidores de {userProfile.name} {userProfile.surname}</h1>
         </header>
   
         <UserList users={users} getUser={getUser} following={following} setFollowing={setFollowing}

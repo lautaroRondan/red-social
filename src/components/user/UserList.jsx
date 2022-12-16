@@ -2,6 +2,7 @@ import React from 'react'
 import useAuth from '../../hooks/useAuth';
 import { PetitionFetchToken } from '../../helpers/PetitionFetch';
 import { Global } from '../../helpers/Global';
+import { Link } from 'react-router-dom';
 
 export const UserList = ({users, getUser , following, setFollowing, page, setPage, more}) => {
 
@@ -50,20 +51,20 @@ export const UserList = ({users, getUser , following, setFollowing, page, setPag
                             <div className="post__container">
 
                                 <div className="post__image-user">
-                                    <a href="#" className="post__image-link">
+                                    <Link to={"/social/perfil/"+user._id} className="post__image-link">
                                         {!user.image && 
                                         <img src={urlImg} className="post__user-image" alt="Foto de perfil" />
                                         }
                                         <img src={user.image} className="post__user-image" alt="Foto de perfil" />
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 <div className="post__body">
 
                                     <div className="post__user-info">
-                                        <a href="#" className="user-info__name">{user.name} {user.surname}</a>
+                                        <Link to={"/social/perfil/"+user._id} className="user-info__name">{user.name} {user.surname}</Link>
                                         <span className="user-info__divider"> | </span>
-                                        <a href="#" className="user-info__create-date">{user.create_at}</a>
+                                        <Link to={"/social/perfil/"+user._id} className="user-info__create-date">{user.create_at}</Link>
                                     </div>
 
                                     <h4 className="post__content">{user.bio}</h4>
