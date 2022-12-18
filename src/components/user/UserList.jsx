@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import { PetitionFetchToken } from '../../helpers/PetitionFetch';
 import { Global } from '../../helpers/Global';
 import { Link } from 'react-router-dom';
+import ReactTimeAgo from 'react-time-ago';
 
 export const UserList = ({users, getUser , following, setFollowing, page, setPage, more}) => {
 
@@ -64,7 +65,7 @@ export const UserList = ({users, getUser , following, setFollowing, page, setPag
                                     <div className="post__user-info">
                                         <Link to={"/social/perfil/"+user._id} className="user-info__name">{user.name} {user.surname}</Link>
                                         <span className="user-info__divider"> | </span>
-                                        <Link to={"/social/perfil/"+user._id} className="user-info__create-date">{user.create_at}</Link>
+                                        <Link to={"/social/perfil/"+user._id} className="user-info__create-date"><ReactTimeAgo date={user.create_at} locale="es-AR"/></Link>
                                     </div>
 
                                     <h4 className="post__content">{user.bio}</h4>

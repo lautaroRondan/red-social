@@ -1,165 +1,63 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { GetProfile } from '../../helpers/GetProfile';
+import { useParams, Link } from 'react-router-dom';
+import { PetitionFetchToken } from '../../helpers/PetitionFetch';
+import { Global } from '../../helpers/Global';
 import useAuth from '../../hooks/useAuth';
+import { PublicationList } from '../publication/PublicationList';
 
 export const Feed = () => {
+
+    const { auth } = useAuth();
+    const [page, setPage] = useState(1);
+    const [more, setMore] = useState(true);
+    const [publications, setPublications] = useState([]);
+    const params = useParams();
+
+    useEffect(() => {
+        getPublication(1, false);
+    }, []);
+
+    const getPublication = async (nextPage = 1, showNews = false) => {
+
+        if(showNews){
+            setPublications([]);
+            setPage(1);
+            nextPage = 1;
+        }
+
+        const { datos } = await PetitionFetchToken(Global.url + "publication/feed/"  + nextPage, "GET", localStorage.getItem("token"));
+
+        if (datos.status === "success") {
+            let newPublication = datos.publications;
+            if (!showNews && publications.length >= 1) {
+                newPublication = [...publications, ...datos.publications];
+            }
+
+            setPublications(newPublication);
+
+            if (!showNews && publications.length >= (datos.total - datos.publications.length)) {
+                setMore(false);
+            }
+
+            // if(datos.page <= 1){
+            //     setMore(false)
+            // }
+        }
+    }
 
     return (
         <>
             <header className="content__header">
                 <h1 className="content__title">Timeline</h1>
-                <button className="content__button">Mostrar nuevas</button>
+                <button className="content__button" onClick={() => getPublication(1, true)}>Mostrar nuevas</button>
             </header>
 
-            <div className="content__posts">
-
-                <div className="posts__post">
-
-                    <div className="post__container">
-
-                        <div className="post__image-user">
-                            <a href="#" className="post__image-link">
-                                <img src="assets/img/user.png" className="post__user-image" alt="Foto de perfil" />
-                            </a>
-                        </div>
-
-                        <div className="post__body">
-
-                            <div className="post__user-info">
-                                <a href="#" className="user-info__name">Victor Robles</a>
-                                <span className="user-info__divider"> | </span>
-                                <a href="#" className="user-info__create-date">Hace 1 hora</a>
-                            </div>
-
-                            <h4 className="post__content">Hola, buenos dias.</h4>
-
-                        </div>
-
-                    </div>
-
-
-                    <div className="post__buttons">
-
-                        <a href="#" className="post__button">
-                        <FontAwesomeIcon icon={faTrashCan} />
-                        </a>
-
-                    </div>
-
-                </div>
-
-                <div className="posts__post">
-
-                    <div className="post__container">
-
-                        <div className="post__image-user">
-                            <a href="#" className="post__image-link">
-                                <img src="assets/img/user.png" className="post__user-image" alt="Foto de perfil" />
-                            </a>
-                        </div>
-
-                        <div className="post__body">
-
-                            <div className="post__user-info">
-                                <a href="#" className="user-info__name">Victor Robles</a>
-                                <span className="user-info__divider"> | </span>
-                                <a href="#" className="user-info__create-date">Hace 1 hora</a>
-                            </div>
-
-                            <h4 className="post__content">Hola, buenos dias.</h4>
-
-                        </div>
-                    </div>
-
-                    <div className="post__buttons">
-
-                        <a href="#" className="post__button">
-                        <FontAwesomeIcon icon={faTrashCan} />
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <div className="posts__post">
-
-                    <div className="post__container">
-
-                        <div className="post__image-user">
-                            <a href="#" className="post__image-link">
-                                <img src="assets/img/user.png" className="post__user-image" alt="Foto de perfil" />
-                            </a>
-                        </div>
-
-                        <div className="post__body">
-
-                            <div className="post__user-info">
-                                <a href="#" className="user-info__name">Victor Robles</a>
-                                <span className="user-info__divider"> | </span>
-                                <a href="#" className="user-info__create-date">Hace 1 hora</a>
-                            </div>
-
-                            <h4 className="post__content">Hola, buenos dias.</h4>
-
-                        </div>
-                    </div>
-
-                    <div className="post__buttons">
-
-                        <a href="#" className="post__button">
-                        <FontAwesomeIcon icon={faTrashCan} />
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-
-
-                <div className="posts__post">
-
-                    <div className="post__container">
-
-                        <div className="post__image-user">
-                            <a href="#" className="post__image-link">
-                                <img src="assets/img/user.png" className="post__user-image" alt="Foto de perfil" />
-                            </a>
-                        </div>
-
-                        <div className="post__body">
-
-                            <div className="post__user-info">
-                                <a href="#" className="user-info__name">Victor Robles</a>
-                                <span className="user-info__divider"> | </span>
-                                <a href="#" className="user-info__create-date">Hace 1 hora</a>
-                            </div>
-
-                            <h4 className="post__content">Hola, buenos dias.</h4>
-
-                        </div>
-                    </div>
-
-                    <div className="post__buttons">
-
-                        <a href="#" className="post__button">
-                        <FontAwesomeIcon icon={faTrashCan} />
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-            <div className="content__container-btn">
-                <button className="content__btn-more-post">
-                    Ver mas publicaciones
-                </button>
-            </div>
+            <PublicationList publications={publications} getPublication={getPublication}
+                            page={page} setPage={setPage} 
+                            more={more} setMore={setMore} />
         </>
     )
 }

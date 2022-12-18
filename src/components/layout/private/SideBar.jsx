@@ -28,27 +28,23 @@ export const SideBar = () => {
 
         const fileInput = document.querySelector("#file");
 
-        if(datos.status == "success" && fileInput.files[0]){
+        if (datos.status == "success" && fileInput.files[0]) {
 
             const formData = new FormData();
             formData.append("image", fileInput.files[0]);
 
-            const imageP = await PetitionFetchToken(Global.url + "publication/upload/"+ datos.publication._id, "POST", localStorage.getItem("token"), formData, true);
-        
-            if (imageP.datos.status=== "success") {
+            const imageP = await PetitionFetchToken(Global.url + "publication/upload/" + datos.publication._id, "POST", localStorage.getItem("token"), formData, true);
+
+            if (imageP.datos.status === "success") {
                 setSaved("saved");
-    
+
             } else {
                 setSaved("error");
             }
-
-            if(imageP.datos.status === "success"){
-                const myForm = document.querySelector("#publication-form");
-                myForm.reset();
-            }
-
-        
         }
+
+        const myForm = document.querySelector("#publication-form");
+        myForm.reset();
 
     }
 
@@ -69,7 +65,7 @@ export const SideBar = () => {
                         </div>
 
                         <div className="general-info__container-names">
-                            <NavLink to={"/social/perfil/"+auth._id} className="container-names__name">{auth.name} {auth.surname} </NavLink>
+                            <NavLink to={"/social/perfil/" + auth._id} className="container-names__name">{auth.name} {auth.surname} </NavLink>
                             <p className="container-names__nickname">{auth.nick}</p>
                         </div>
                     </div>
@@ -91,7 +87,7 @@ export const SideBar = () => {
 
 
                         <div className="stats__following">
-                            <NavLink to={"/social/perfil/"+auth._id} className="following__link">
+                            <NavLink to={"/social/perfil/" + auth._id} className="following__link">
                                 <span className="following__title">Publicaciones</span>
                                 <span className="following__number">{counters.publications >= 1 ? counters.publications : 0}</span>
                             </NavLink>
