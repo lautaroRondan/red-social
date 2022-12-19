@@ -11,10 +11,11 @@ export const PublicLayout = () => {
         <>
             <Header />
 
-            <section className="layout__content">
-            {!auth ._id ?
+            <section className="layout__content--public">
+            {!auth._id ?
                     <Outlet/>
-                    : <Navigate to='/social'/>
+                    : 
+                    <Navigate to='/social'/>
                 }
             </section>
         </>

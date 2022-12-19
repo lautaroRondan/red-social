@@ -9,7 +9,7 @@ export const Logout = () => {
 
     useEffect(() => {
 
-        localStorage.clear;
+        localStorage.clear();
         setAuth({});
         setCounters({})
         navigate("/login")

@@ -84,13 +84,9 @@ export const Profile = () => {
 
             setPublications(newPublication);
 
-            if (!newProfile && publications.length >= (datos.total - datos.publications.length)) {
+            if (newProfile && publications.length >= (datos.total - datos.publications.length)) {
                 setMore(false);
             }
-
-            // if(datos.page <= 1){
-            //     setMore(false)
-            // }
         }
     }
 
@@ -103,7 +99,7 @@ export const Profile = () => {
         <>
             <header className="aside__profile-info">
 
-                <div className="profile-info__general-info">
+                <div className="profile-info__general-info profile">
                     <div className="general-info__container-avatar">
                         <img src={user.image} className="container-avatar__img" alt="Foto de perfil" />
                     </div>
@@ -118,13 +114,14 @@ export const Profile = () => {
                                     <button onClick={() => follow(user._id)} className="content__button content__button--rigth">Seguir</button>
                                 )}
                         </div>
+                        
                         <h2 className="container-names__nickname">{user.nick}</h2>
                         <p>{user.bio}</p>
 
                     </div>
                 </div>
 
-                <div className="profile-info__stats">
+                <div className="profile-info__stats profile">
 
                     <div className="stats__following">
                         <Link to={"/social/siguiendo/" + user._id} className="following__link">
@@ -132,7 +129,7 @@ export const Profile = () => {
                             <span className="following__number">{counters.following >= 1 ? counters.following : 0}</span>
                         </Link>
                     </div>
-                    <div className="stats__following">
+                    <div className="stats__following stats__following--medio">
                         <Link to={"/social/seguidores/" + user._id} className="following__link">
                             <span className="following__title">Seguidores</span>
                             <span className="following__number">{counters.followed >= 1 ? counters.followed : 0}</span>

@@ -42,17 +42,17 @@ export const PublicationList = ({publications, getPublication, page, setPage, mo
                             <div className="post__container">
 
                                 <div className="post__image-user">
-                                    <a href="#" className="post__image-link">
+                                    <Link to={"/social/perfil/"+publication.user._id} className="post__image-link">
                                         <img src={publication.user.image} className="post__user-image" alt="Foto de perfil" />
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 <div className="post__body">
 
                                     <div className="post__user-info">
-                                        <a href="#" className="user-info__name">{publication.user.name} {publication.user.surname}</a>
+                                    <Link to={"/social/perfil/"+publication.user._id} className="user-info__name">{publication.user.name} {publication.user.surname}</Link>
                                         <span className="user-info__divider"> | </span>
-                                        <a href="#" className="user-info__create-date"><ReactTimeAgo date={publication.crated_at} locale="es-AR"/> </a>
+                                        <Link to={"/social/perfil/"+publication.user._id}  className="user-info__create-date"><ReactTimeAgo date={publication.crated_at} locale="es-AR"/> </Link>
                                     </div>
 
                                     <h4 className="post__content">{publication.text}</h4>

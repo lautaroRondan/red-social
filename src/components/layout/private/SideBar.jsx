@@ -78,7 +78,7 @@ export const SideBar = () => {
                                 <span className="following__number">{counters.following >= 1 ? counters.following : 0}</span>
                             </Link>
                         </div>
-                        <div className="stats__following">
+                        <div className="stats__following stats__following--medio">
                             <Link to={"/social/seguidores/" + auth._id} className="following__link">
                                 <span className="following__title">Seguidores</span>
                                 <span className="following__number">{counters.followed >= 1 ? counters.followed : 0}</span>

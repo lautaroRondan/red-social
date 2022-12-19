@@ -20,18 +20,16 @@ export const AuthProvider = ({children}) => {
         const user = localStorage.getItem("user");
 
         if(!token || !user){
+            console.log("a")
             return false;
         }
-
-        console.log(token)
 
         const userObj = JSON.parse(user);
         const userId = userObj.id;
 
         const {datos} = await PetitionFetchToken(Global.url + "user/profile/"+userId, "GET", token);
-
         setAuth(datos.user);
-
+        
         const dato = await PetitionFetchToken(Global.url + "user/counters/"+userId, "GET", token);
         setCounters(dato.datos);
        
