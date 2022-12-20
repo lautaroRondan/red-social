@@ -84,8 +84,7 @@ body {
 }
 
 .navbar__title{
-    font-size: 1.8rem;
-    padding: 1.8rem;
+    padding: 5.8rem;
 }
 
 .navbar__container-lists{
@@ -109,7 +108,7 @@ body {
     padding: 0.5rem;
 }
 
-.navbar__title:hover, .menu-list__link:hover,
+ .menu-list__link:hover,
 .list-end__link:hover, .list-end__item:first-child:hover{
     background-color: var(--color-hover-navbar);
 }
