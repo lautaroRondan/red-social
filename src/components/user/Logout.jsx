@@ -4,16 +4,16 @@ import useAuth from '../../hooks/useAuth';
 
 export const Logout = () => {
 
-    const navigate = useNavigate();
-    const {setAuth, setCounters} = useAuth();
+  const navigate = useNavigate();
+  const { setAuth, setCounters } = useAuth();
 
-    useEffect(() => {
+  useEffect(() => {
 
-        localStorage.clear();
-        setAuth({});
-        setCounters({})
-        navigate("/login")
-    })
+    localStorage.clear();
+    setAuth({});
+    setCounters({})
+    navigate("/login")
+  })
 
   return (
     <h1>cerrando sesion...</h1>

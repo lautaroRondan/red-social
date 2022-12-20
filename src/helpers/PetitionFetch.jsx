@@ -68,21 +68,21 @@ export const PetitionFetchToken = async (url, metodo, token, datosGuardar = "", 
     if (archivos) {
       opciones = {
         method: metodo,
-      body: datosGuardar,
-      headers: {
-        "Authorization": token
-      },
+        body: datosGuardar,
+        headers: {
+          "Authorization": token
+        },
       };
     } else {
-    opciones = {
-      method: metodo,
-      body: JSON.stringify(datosGuardar),
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": token
-      },
-    };
-  }
+      opciones = {
+        method: metodo,
+        body: JSON.stringify(datosGuardar),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token
+        },
+      };
+    }
   }
 
   const peticion = await fetch(url, opciones);

@@ -6,7 +6,7 @@ import { UserList } from './UserList';
 export const People = () => {
 
   const [users, setUsers] = useState([]);
-  
+
   const [page, setPage] = useState(1);
   const [following, setFollowing] = useState([]);
   const [more, setMore] = useState(true);
@@ -38,7 +38,7 @@ export const People = () => {
     }
   }
 
-  
+
 
   return (
     <>
@@ -47,9 +47,9 @@ export const People = () => {
       </header>
 
       <UserList users={users} getUser={getUser} following={following} setFollowing={setFollowing}
-                page={page} setPage={setPage} more={more} />
+        page={page} setPage={setPage} more={more} />
 
-      
+
     </>
   )
 }

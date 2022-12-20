@@ -496,6 +496,17 @@ button{
     margin-bottom: 1rem;
     border-radius: 3px;
 }
+
+.alert-login, .alert-register{
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+}
+
 .alert-p{
     width: 85%;
 }

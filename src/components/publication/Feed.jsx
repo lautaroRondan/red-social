@@ -22,13 +22,13 @@ export const Feed = () => {
 
     const getPublication = async (nextPage = 1, showNews = false) => {
 
-        if(showNews){
+        if (showNews) {
             setPublications([]);
             setPage(1);
             nextPage = 1;
         }
 
-        const { datos } = await PetitionFetchToken(Global.url + "publication/feed/"  + nextPage, "GET", localStorage.getItem("token"));
+        const { datos } = await PetitionFetchToken(Global.url + "publication/feed/" + nextPage, "GET", localStorage.getItem("token"));
 
         if (datos.status === "success") {
             let newPublication = datos.publications;
@@ -56,8 +56,8 @@ export const Feed = () => {
             </header>
 
             <PublicationList publications={publications} getPublication={getPublication}
-                            page={page} setPage={setPage} 
-                            more={more} setMore={setMore} />
+                page={page} setPage={setPage}
+                more={more} setMore={setMore} />
         </>
     )
 }

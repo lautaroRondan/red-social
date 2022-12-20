@@ -4,11 +4,8 @@ function App() {
 
   return (
     <div className='layout'>
-        <Routing/>
+      <Routing />
     </div>
-
-
-    
   )
 }
 

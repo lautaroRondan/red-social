@@ -5,13 +5,13 @@ export const Header = () => {
   return (
     <header className="layout__navbar">
 
-            <div className="navbar__header">
-                <a href="#" className="navbar__title">LRSOCIAL</a>
-            </div>
+      <div className="navbar__header">
+        <a href="#" className="navbar__title">LRSOCIAL</a>
+      </div>
 
-            <Nav/>
+      <Nav />
 
-        </header>
+    </header>
   )
 }
 

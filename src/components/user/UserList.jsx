@@ -5,7 +5,7 @@ import { Global } from '../../helpers/Global';
 import { Link } from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
 
-export const UserList = ({users, getUser , following, setFollowing, page, setPage, more}) => {
+export const UserList = ({ users, getUser, following, setFollowing, page, setPage, more }) => {
 
     const { auth } = useAuth();
     const urlImg = "https://res.cloudinary.com/diop3sm01/image/upload/v1670818379/avatar/user_ax4fkd.png"
@@ -14,7 +14,7 @@ export const UserList = ({users, getUser , following, setFollowing, page, setPag
         let next = page + 1;
         setPage(next);
         getUser(next);
-      }
+    }
 
     const follow = async (userId) => {
         const id = {
@@ -39,8 +39,8 @@ export const UserList = ({users, getUser , following, setFollowing, page, setPag
 
     }
 
-    
-    
+
+
     return (
         <>
             <div className="content__posts">
@@ -52,9 +52,9 @@ export const UserList = ({users, getUser , following, setFollowing, page, setPag
                             <div className="post__container">
 
                                 <div className="post__image-user">
-                                    <Link to={"/social/perfil/"+user._id} className="post__image-link">
-                                        {!user.image && 
-                                        <img src={urlImg} className="post__user-image" alt="Foto de perfil" />
+                                    <Link to={"/social/perfil/" + user._id} className="post__image-link">
+                                        {!user.image &&
+                                            <img src={urlImg} className="post__user-image" alt="Foto de perfil" />
                                         }
                                         <img src={user.image} className="post__user-image" alt="Foto de perfil" />
                                     </Link>
@@ -63,9 +63,9 @@ export const UserList = ({users, getUser , following, setFollowing, page, setPag
                                 <div className="post__body">
 
                                     <div className="post__user-info">
-                                        <Link to={"/social/perfil/"+user._id} className="user-info__name">{user.name} {user.surname}</Link>
+                                        <Link to={"/social/perfil/" + user._id} className="user-info__name">{user.name} {user.surname}</Link>
                                         <span className="user-info__divider"> | </span>
-                                        <Link to={"/social/perfil/"+user._id} className="user-info__create-date"><ReactTimeAgo date={user.create_at} locale="es-AR"/></Link>
+                                        <Link to={"/social/perfil/" + user._id} className="user-info__create-date"><ReactTimeAgo date={user.create_at} locale="es-AR" /></Link>
                                     </div>
 
                                     <h4 className="post__content">{user.bio}</h4>
@@ -100,12 +100,12 @@ export const UserList = ({users, getUser , following, setFollowing, page, setPag
 
             </div>
             {more &&
-        <div className="content__container-btn">
-          <button className="content__btn-more-post" onClick={nextPage}>
-            Ver mas personas
-          </button>
-        </div>
-      }
+                <div className="content__container-btn">
+                    <button className="content__btn-more-post" onClick={nextPage}>
+                        Ver mas personas
+                    </button>
+                </div>
+            }
 
         </>
     )

@@ -6,28 +6,30 @@ import { SideBar } from './SideBar'
 
 export const PrivateLayout = () => {
 
-    const {auth} = useAuth();      
-    
-    
-    return (
-        <>
-            <Header />
+    const { auth, loading } = useAuth();
+    let userId = localStorage.getItem("user")
 
-            <section className="layout__content">
-                
-                { auth._id? 
-                    <Outlet />
-                      : 
-                     <Navigate to='/login'/> }
-                    
+    if (loading) {
+        <h1>Cargando...</h1>
+    } else {
 
-              
-            
-            </section>
+        return (
+            <>
+                <Header />
 
-            <SideBar/>
-        </>
-    )
+                <section className="layout__content">
 
+                    {
+                        auth._id ?
+                            <Outlet />
+                            :
+                            <Navigate to='/login' />}
+
+                </section>
+
+                <SideBar />
+            </>
+        );
+    };
 }
 

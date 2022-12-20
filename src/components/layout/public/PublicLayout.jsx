@@ -5,17 +5,17 @@ import { Header } from './Header'
 
 export const PublicLayout = () => {
 
-    const {auth} = useAuth();
+    const { auth } = useAuth();
 
     return (
         <>
             <Header />
 
             <section className="layout__content--public">
-            {!auth._id ?
-                    <Outlet/>
-                    : 
-                    <Navigate to='/social'/>
+                {!auth._id ?
+                    <Outlet />
+                    :
+                    <Navigate to='/social' />
                 }
             </section>
         </>

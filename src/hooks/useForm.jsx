@@ -1,43 +1,43 @@
 import { useState } from "react";
 
-export const useForm = (initialObj = {})=>{
+export const useForm = (initialObj = {}) => {
 
-        const [form, setForm] = useState(initialObj);
+    const [form, setForm] = useState(initialObj);
 
-        const serializarform = (form) =>{
+    const serializarform = (form) => {
 
-            const formData = new FormData(form);
-            const objetoCompleto = {};
+        const formData = new FormData(form);
+        const objetoCompleto = {};
 
-            for(let[name, value] of formData){
-                objetoCompleto[name]=value;
-            }
-
-            return objetoCompleto;
+        for (let [name, value] of formData) {
+            objetoCompleto[name] = value;
         }
 
-        const enviado = (e)=>{
+        return objetoCompleto;
+    }
 
-            e.preventDefault();
+    const enviado = (e) => {
 
-            let curso= serializarform(e.target);
+        e.preventDefault();
 
-            setForm(curso);
-        }
+        let curso = serializarform(e.target);
 
-        const change = ({target})=>{
-            const {name, value} = target;
+        setForm(curso);
+    }
 
-            setForm({
-                ...form,
-                [name]:value
-            });
-        }
-        
-        return{
-            form,
-            enviado,
-            change
-        }
-    
+    const change = ({ target }) => {
+        const { name, value } = target;
+
+        setForm({
+            ...form,
+            [name]: value
+        });
+    }
+
+    return {
+        form,
+        enviado,
+        change
+    }
+
 }

@@ -9,7 +9,7 @@ import useAuth from '../../hooks/useAuth';
 import ReactTimeAgo from 'react-time-ago';
 
 
-export const PublicationList = ({publications, getPublication, page, setPage, more, setMore}) => {
+export const PublicationList = ({ publications, getPublication, page, setPage, more, setMore }) => {
 
     const { auth } = useAuth();
 
@@ -19,7 +19,7 @@ export const PublicationList = ({publications, getPublication, page, setPage, mo
         getPublication(next)
     }
 
-    const deletePublication = async(publicationId) => {
+    const deletePublication = async (publicationId) => {
 
         const { datos } = await PetitionFetchToken(Global.url + "publication/remove/" + publicationId, "DELETE", localStorage.getItem("token"));
 
@@ -42,7 +42,7 @@ export const PublicationList = ({publications, getPublication, page, setPage, mo
                             <div className="post__container">
 
                                 <div className="post__image-user">
-                                    <Link to={"/social/perfil/"+publication.user._id} className="post__image-link">
+                                    <Link to={"/social/perfil/" + publication.user._id} className="post__image-link">
                                         <img src={publication.user.image} className="post__user-image" alt="Foto de perfil" />
                                     </Link>
                                 </div>
@@ -50,9 +50,9 @@ export const PublicationList = ({publications, getPublication, page, setPage, mo
                                 <div className="post__body">
 
                                     <div className="post__user-info">
-                                    <Link to={"/social/perfil/"+publication.user._id} className="user-info__name">{publication.user.name} {publication.user.surname}</Link>
+                                        <Link to={"/social/perfil/" + publication.user._id} className="user-info__name">{publication.user.name} {publication.user.surname}</Link>
                                         <span className="user-info__divider"> | </span>
-                                        <Link to={"/social/perfil/"+publication.user._id}  className="user-info__create-date"><ReactTimeAgo date={publication.crated_at} locale="es-AR"/> </Link>
+                                        <Link to={"/social/perfil/" + publication.user._id} className="user-info__create-date"><ReactTimeAgo date={publication.crated_at} locale="es-AR" /> </Link>
                                     </div>
 
                                     <h4 className="post__content">{publication.text}</h4>

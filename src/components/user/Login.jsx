@@ -39,13 +39,17 @@ export const Login = () => {
         <h1 className="content__title">Login</h1>
       </header>
       <div className="content__posts public">
-
         {saved == "login" ?
-          <strong className='alert alert-success'> "Ingreso correctamente" </strong>
+          <strong className='alert-login alert-success'> "Ingreso correctamente" </strong>
           : ""}
         {saved == "error" ?
-          <strong className='alert alert-danger'> "Los datos proporcionasdos son incorrectos" </strong>
+          <strong className='alert-login alert-danger'> "Los datos proporcionasdos son incorrectos" </strong>
           : ""}
+      </div>
+      <div className="content__posts public">
+
+
+
 
         <form className='form-login' onSubmit={loginUser}>
 
@@ -62,8 +66,8 @@ export const Login = () => {
           <input type='submit' value='Identificate' className='btn btn-success' />
 
         </form>
-
       </div>
+
     </>
   )
 }
