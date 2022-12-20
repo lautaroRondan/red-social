@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { serializeForm } from '../../hooks/serializeForm';
 import useAuth from '../../hooks/useAuth';
 import { PetitionFetchToken } from '../../helpers/petitionFetch';
-import { Global } from '../../helpers/Global';
+import { Global, Avatar } from '../../helpers/Global';
 
 
 export const Config = () => {
@@ -78,10 +78,12 @@ export const Config = () => {
             <label htmlFor='file0'>Avatar</label>
             <div className='avatar'>
               <a href="#" className="post__image-link">
-                {!auth.image &&
-                  <img src={urlImg} className="post__user-image" alt="Foto de perfil" />
+                {!auth.image ?
+                  <img src={Avatar.image} className="post__user-image" alt="Foto de perfil" />
+                  :
+                  <img src={auth.image} className="post__user-image" alt="Foto de perfil" />
                 }
-                <img src={auth.image} className="post__user-image" alt="Foto de perfil" />
+
               </a>
             </div>
             <input type="file" name="file0" />

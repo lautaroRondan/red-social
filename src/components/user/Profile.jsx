@@ -4,7 +4,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { GetProfile } from '../../helpers/GetProfile';
 import { useParams, Link } from 'react-router-dom';
 import { PetitionFetchToken } from '../../helpers/PetitionFetch';
-import { Global } from '../../helpers/Global';
+import { Global, Avatar } from '../../helpers/Global';
 import useAuth from '../../hooks/useAuth';
 import { PublicationList } from '../publication/PublicationList';
 
@@ -76,7 +76,7 @@ export const Profile = () => {
                 newPublication = [...publications, ...datos.publications];
             }
 
-            if(newProfile){
+            if (newProfile) {
                 newPublication = datos.publications;
                 setMore(true);
                 setPage(1)
@@ -90,10 +90,6 @@ export const Profile = () => {
         }
     }
 
-  
-
-    
-
 
     return (
         <>
@@ -101,7 +97,11 @@ export const Profile = () => {
 
                 <div className="profile-info__general-info profile">
                     <div className="general-info__container-avatar">
-                        <img src={user.image} className="container-avatar__img" alt="Foto de perfil" />
+                        {!user.image ?
+                            <img src={Avatar.image} className="container-avatar__img" alt="Foto de perfil" />
+                            :
+                            <img src={user.image} className="container-avatar__img" alt="Foto de perfil" />
+                        }
                     </div>
 
                     <div className="general-info__container-names">
@@ -114,7 +114,7 @@ export const Profile = () => {
                                     <button onClick={() => follow(user._id)} className="content__button content__button--rigth">Seguir</button>
                                 )}
                         </div>
-                        
+
                         <h2 className="container-names__nickname">{user.nick}</h2>
                         <p>{user.bio}</p>
 
@@ -148,10 +148,10 @@ export const Profile = () => {
                 </div>
             </header>
 
-           <PublicationList publications={publications} getPublication={getPublication}
-                            page={page} setPage={setPage} 
-                            more={more} setMore={setMore} />
-            
+            <PublicationList publications={publications} getPublication={getPublication}
+                page={page} setPage={setPage}
+                more={more} setMore={setMore} />
+
         </>
     )
 }

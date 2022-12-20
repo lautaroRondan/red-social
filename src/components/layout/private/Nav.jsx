@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faGear, faHouse, faList, faUser } from '@fortawesome/free-solid-svg-icons'
 import useAuth from '../../../hooks/useAuth';
+import { Avatar } from '../../../helpers/Global';
 
 export const Nav = () => {
 
@@ -19,12 +20,12 @@ export const Nav = () => {
                     </NavLink>
                 </li>
 
-                <li className="menu-list__item">
+                {/* <li className="menu-list__item">
                     <NavLink to="/social/feed" className="menu-list__link">
                         <FontAwesomeIcon icon={faList} />
                         <span className="menu-list__title">Timeline</span>
                     </NavLink>
-                </li>
+                </li> */}
 
                 <li className="menu-list__item">
                     <NavLink to="/social/gente" className="menu-list__link">
@@ -38,7 +39,13 @@ export const Nav = () => {
             <ul className="container-lists__list-end">
                 <li className="list-end__item">
                     <NavLink to={"/social/perfil/" + auth._id} className="list-end__link-image">
-                        <img src={auth.image} className="list-end__img" alt="Imagen de perfil" />
+                        {
+                            !auth.image ?
+                                <img src={Avatar.image} className="list-end__img" alt="Imagen de perfil" />
+                                :
+                                <img src={auth.image} className="list-end__img" alt="Imagen de perfil" />
+                        }
+
                     </NavLink>
                 </li>
                 <li className="list-end__item">

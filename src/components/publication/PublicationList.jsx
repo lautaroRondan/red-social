@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { GetProfile } from '../../helpers/GetProfile';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PetitionFetchToken } from '../../helpers/PetitionFetch';
-import { Global } from '../../helpers/Global';
+import { Global, Avatar } from '../../helpers/Global';
 import useAuth from '../../hooks/useAuth';
 import ReactTimeAgo from 'react-time-ago';
 
@@ -43,7 +42,11 @@ export const PublicationList = ({ publications, getPublication, page, setPage, m
 
                                 <div className="post__image-user">
                                     <Link to={"/social/perfil/" + publication.user._id} className="post__image-link">
-                                        <img src={publication.user.image} className="post__user-image" alt="Foto de perfil" />
+                                        {!publication.user.image ?
+                                            <img src={Avatar.image} className="post__user-image" alt="Foto de perfil" />
+                                            :
+                                            <img src={publication.user.image} className="post__user-image" alt="Foto de perfil" />
+                                        }
                                     </Link>
                                 </div>
 

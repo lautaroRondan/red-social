@@ -1,14 +1,13 @@
 import React from 'react'
 import useAuth from '../../hooks/useAuth';
 import { PetitionFetchToken } from '../../helpers/PetitionFetch';
-import { Global } from '../../helpers/Global';
+import { Global, Avatar } from '../../helpers/Global';
 import { Link } from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
 
 export const UserList = ({ users, getUser, following, setFollowing, page, setPage, more }) => {
 
     const { auth } = useAuth();
-    const urlImg = "https://res.cloudinary.com/diop3sm01/image/upload/v1670818379/avatar/user_ax4fkd.png"
 
     const nextPage = () => {
         let next = page + 1;
@@ -53,10 +52,11 @@ export const UserList = ({ users, getUser, following, setFollowing, page, setPag
 
                                 <div className="post__image-user">
                                     <Link to={"/social/perfil/" + user._id} className="post__image-link">
-                                        {!user.image &&
-                                            <img src={urlImg} className="post__user-image" alt="Foto de perfil" />
+                                        {!user.image ?
+                                            <img src={Avatar.image} className="post__user-image" alt="Foto de perfil" />
+                                            :
+                                            <img src={user.image} className="post__user-image" alt="Foto de perfil" />
                                         }
-                                        <img src={user.image} className="post__user-image" alt="Foto de perfil" />
                                     </Link>
                                 </div>
 

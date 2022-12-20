@@ -3,7 +3,7 @@ import useAuth from '../../../hooks/useAuth'
 import { Link, NavLink } from 'react-router-dom';
 import { useForm } from '../../../hooks/useForm';
 import { PetitionFetchToken } from '../../../helpers/PetitionFetch';
-import { Global } from '../../../helpers/Global';
+import { Global, Avatar } from '../../../helpers/Global';
 
 export const SideBar = () => {
 
@@ -61,7 +61,13 @@ export const SideBar = () => {
 
                     <div className="profile-info__general-info">
                         <div className="general-info__container-avatar">
-                            <img src={auth.image} className="container-avatar__img" alt="Foto de perfil" />
+                            {
+                                !auth.image ?
+                                <img src={Avatar.image} className="container-avatar__img" alt="Foto de perfil" />
+                                :
+                                <img src={auth.image} className="container-avatar__img" alt="Foto de perfil" />
+                            }
+                            
                         </div>
 
                         <div className="general-info__container-names">
