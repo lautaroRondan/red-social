@@ -30,11 +30,11 @@ export const Config = () => {
 
   return (
     <>
-      <header className="content__header">
-        <h1 className="content__title">Ajustes</h1>
+      <header className="content__header content__header--config">
+        <h1 className="content__title ">Ajustes</h1>
       </header>
 
-      <div className="content__posts">
+      <div className="content__posts content__posts--config">
         {saved == "guardado" ?
           <strong className='alert alert-success'> "Se actualizo correctamente" </strong>
           : ""}

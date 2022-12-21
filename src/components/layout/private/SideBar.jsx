@@ -7,9 +7,14 @@ import { Global, Avatar } from '../../../helpers/Global';
 
 export const SideBar = () => {
 
-    const { auth, counters } = useAuth();
+    const { auth, counters, setCounters } = useAuth();
     const { form, change } = useForm({});
-    const [saved, setSaved] = useState("not saved")
+    const [saved, setSaved] = useState("not saved");
+
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    const userObj = JSON.parse(user);
+    const idUser = userObj.id;
 
     const savePublication = async (e) => {
         e.preventDefault();
@@ -17,7 +22,7 @@ export const SideBar = () => {
         let newPublication = form;
         newPublication.user = auth._id
 
-        const { datos } = await PetitionFetchToken(Global.url + "publication/save", "POST", localStorage.getItem("token"), newPublication);
+        const { datos } = await PetitionFetchToken(Global.url + "publication/save", "POST", token, newPublication);
 
         if (datos.status === "success") {
             setSaved("saved");
@@ -33,7 +38,7 @@ export const SideBar = () => {
             const formData = new FormData();
             formData.append("image", fileInput.files[0]);
 
-            const imageP = await PetitionFetchToken(Global.url + "publication/upload/" + datos.publication._id, "POST", localStorage.getItem("token"), formData, true);
+            const imageP = await PetitionFetchToken(Global.url + "publication/upload/" + datos.publication._id, "POST", token, formData, true);
 
             if (imageP.datos.status === "success") {
                 setSaved("saved");
@@ -45,6 +50,9 @@ export const SideBar = () => {
 
         const myForm = document.querySelector("#publication-form");
         myForm.reset();
+
+        const dato = await PetitionFetchToken(Global.url + "user/counters/" + idUser, "GET", token);
+        setCounters(dato.datos);
 
     }
 

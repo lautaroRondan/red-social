@@ -170,7 +170,10 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-   
+}
+
+.content__header--config{
+    justify-content: space-around;
 }
 
 .content__title, .aside__title{
@@ -207,6 +210,13 @@ body {
 
 .content__posts{
     width: 100%;
+}
+
+.content__posts--config{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 

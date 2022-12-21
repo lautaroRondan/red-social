@@ -7,7 +7,12 @@ import ReactTimeAgo from 'react-time-ago';
 
 export const UserList = ({ users, getUser, following, setFollowing, page, setPage, more }) => {
 
-    const { auth } = useAuth();
+    const { auth, setCounters } = useAuth();
+
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    const userObj = JSON.parse(user);
+    const idUser = userObj.id;
 
     const nextPage = () => {
         let next = page + 1;
@@ -20,21 +25,27 @@ export const UserList = ({ users, getUser, following, setFollowing, page, setPag
             followed: userId
         };
 
-        const { datos } = await PetitionFetchToken(Global.url + "follow/save", "POST", localStorage.getItem("token"), id);
+        const { datos } = await PetitionFetchToken(Global.url + "follow/save", "POST", token, id);
 
         if (datos.status === "success") {
             setFollowing([...following, userId])
         }
+
+        const dato = await PetitionFetchToken(Global.url + "user/counters/" + idUser, "GET", token);
+        setCounters(dato.datos);
     }
 
     const unfollow = async (userId) => {
 
-        const { datos } = await PetitionFetchToken(Global.url + "follow/unfollow/" + userId, "DELETE", localStorage.getItem("token"));
+        const { datos } = await PetitionFetchToken(Global.url + "follow/unfollow/" + userId, "DELETE", token);
 
         if (datos.status === "success") {
             let filtrar = following.filter(followingUserId => userId !== followingUserId);
             setFollowing(filtrar);
         }
+
+        const dato = await PetitionFetchToken(Global.url + "user/counters/" + idUser, "GET", token);
+        setCounters(dato.datos);
 
     }
 

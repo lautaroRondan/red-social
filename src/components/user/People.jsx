@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { PetitionFetchToken } from '../../helpers/PetitionFetch';
 import { Global } from '../../helpers/Global';
 import { UserList } from './UserList';
+import useAuth from '../../hooks/useAuth';
+
 
 export const People = () => {
 
   const [users, setUsers] = useState([]);
-
+  const { counters } = useAuth();
   const [page, setPage] = useState(1);
   const [following, setFollowing] = useState([]);
   const [more, setMore] = useState(true);
