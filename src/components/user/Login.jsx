@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from '../../hooks/useForm';
 import { Global } from '../../helpers/Global';
-import { PetitionFetch } from '../../helpers/petitionFetch';
+import { PetitionFetch } from '../../helpers/PetitionFetch';
 import useAuth from '../../hooks/useAuth';
 
 export const Login = () => {
