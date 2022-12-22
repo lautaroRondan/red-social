@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
-import { PetitionFetchToken } from '../../helpers/PetitionFetch';
+import { PetitionFetchToken } from "../../helpers/PetitionFetch";
 import { Global } from '../../helpers/Global';
 import { UserList } from '../user/UserList';
 import { GetProfile } from "../../helpers/GetProfile";

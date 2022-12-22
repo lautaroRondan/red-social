@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { GetProfile } from '../../helpers/GetProfile';
 import { useParams, Link } from 'react-router-dom';
 import { PetitionFetchToken } from '../../helpers/PetitionFetch';
 import { Global } from '../../helpers/Global';

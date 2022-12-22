@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { serializeForm } from '../../hooks/serializeForm';
 import useAuth from '../../hooks/useAuth';
-import { PetitionFetchToken } from '../../helpers/petitionFetch';
+import { PetitionFetchToken } from '../../helpers/PetitionFetch';
 import { Global, Avatar } from '../../helpers/Global';
 
 
