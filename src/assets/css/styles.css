@@ -531,3 +531,44 @@ button{
     color: #fff;
     border: 1px solid #8a0202;
 }
+.post__image-link{
+    max-width: 60%;
+}
+.container__publication{
+    margin-left: 2%;
+}
+
+.image__publication{
+    max-width: 60%;
+}
+
+.post__body{
+margin-left: 3%;
+}
+
+.navbar {
+    /* background: #ff8d01; */
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_logo {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 15px;
+    color: white;
+}
+
+.nav_items NavLink {
+    margin: 15px;
+    color: white;
+    position: relative;
+    text-decoration: none;
+}
+
+.nav_toggle {
+    display: none;
+}

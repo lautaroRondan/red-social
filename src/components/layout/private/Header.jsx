@@ -8,9 +8,9 @@ export const Header = () => {
   return (
     <header className="layout__navbar">
 
-      <div className="navbar__header">
+      {/* <div className="navbar__header">
         <NavLink to="/social" className="navbar__title"><img src={LRwhite}/></NavLink>
-      </div>
+      </div> */}
 
       <Nav></Nav>
 

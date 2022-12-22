@@ -10,7 +10,7 @@ import { PublicationList } from '../publication/PublicationList';
 
 export const Profile = () => {
 
-    const { auth } = useAuth();
+    const { auth} = useAuth();
     const [page, setPage] = useState(1);
     const [user, setUser] = useState({});
     const [more, setMore] = useState(true);
@@ -38,11 +38,14 @@ export const Profile = () => {
     }
 
     const getCounters = async () => {
-        const { datos } = await PetitionFetchToken(Global.url + "user/counters/" + params.userId, "GET", localStorage.getItem("token"));
+        // const { datos } = await PetitionFetchToken(Global.url + "user/counters/" + params.userId, "GET", localStorage.getItem("token"));
 
-        if (datos.following) {
-            setCounters(datos);
-        }
+        // if (datos.following) {
+        //     setCounters(datos);
+        // }
+        const dato = await PetitionFetchToken(Global.url + "user/counters/" + params.userId, "GET", localStorage.getItem("token"));
+        setCounters(dato.datos);
+        console.log(params.userId)
     }
 
     const follow = async (userId) => {
@@ -149,8 +152,7 @@ export const Profile = () => {
             </header>
 
             <PublicationList publications={publications} getPublication={getPublication}
-                page={page} setPage={setPage}
-                more={more} setMore={setMore} />
+                page={page} setPage={setPage} more={more} setMore={setMore} idUser={params.userId} />
 
         </>
     )
