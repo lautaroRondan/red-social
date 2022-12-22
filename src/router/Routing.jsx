@@ -5,7 +5,7 @@ import { Following } from '../components/follow/Following';
 import { PrivateLayout } from '../components/layout/private/PrivateLayout';
 import { PublicLayout } from '../components/layout/public/PublicLayout';
 import { Feed } from '../components/publication/Feed';
-import { Config } from '../components/user/Config';
+import { Config } from '../components/user/Settings';
 import { Login } from '../components/user/Login';
 import { Logout } from '../components/user/Logout';
 import { People } from '../components/user/People';
