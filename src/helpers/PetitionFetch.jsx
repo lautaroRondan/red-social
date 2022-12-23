@@ -28,6 +28,7 @@ export const PetitionFetch = async (url, metodo, datosGuardar = "", archivos = f
         headers: {
           "Content-Type": "application/json",
         },
+        mode: 'cors'
       };
     }
   }
