@@ -48,9 +48,6 @@ export const Login = () => {
       </div>
       <div className="content__posts public">
 
-
-
-
         <form className='form-login' onSubmit={loginUser}>
 
           <div className='form-group'>

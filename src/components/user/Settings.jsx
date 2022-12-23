@@ -35,11 +35,12 @@ export const Config = () => {
       </header>
 
       <div className="content__posts content__posts--config">
+        <div>
         {saved == "guardado" ?
-          <strong className='alert alert-success'> "Se actualizo correctamente" </strong>
+          <strong className='alert alert-success alert-setting'> "Se actualizo correctamente" </strong>
           : ""}
         {saved == "error" ?
-          <strong className='alert alert-danger'> "Los datos proporcionasdos son incorrectos" </strong>
+          <strong className='alert alert-danger alert-setting'> "Los datos proporcionasdos son incorrectos" </strong>
           : ""}
 
         <form className='config-form' onSubmit={updateUser}>
@@ -92,7 +93,7 @@ export const Config = () => {
           <input type="submit" value="Actualizar" className="btn btn-success" />
 
         </form>
-
+        </div>
       </div>
     </>
   )

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightFromBracket, faGear, faHouse, faList, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightFromBracket, faGear, faHouse, faList, faUser, faUsers } from '@fortawesome/free-solid-svg-icons'
 import useAuth from '../../../hooks/useAuth';
 import { Avatar } from '../../../helpers/Global';
 import LRwhite from '/LRwhite.svg';
@@ -77,10 +77,11 @@ export const Nav = () => {
                         <span className="menu-list__title">Inicio</span>
                     </NavLink>
                     <NavLink to="/social/gente" className="menu-list__link">
-                        <FontAwesomeIcon icon={faUser} />
-                        <span className="menu-list__title">Gente</span>
+                        <FontAwesomeIcon icon={faUsers} />
+                        <span className="menu-list__title">Personas</span>
                     </NavLink>
                     <NavLink to={"/social/perfil/" + auth._id} className="list-end__link">
+                    <FontAwesomeIcon icon={faUser} />
                     <span className="list-end__name">Perfil</span>
                     </NavLink>
                     <NavLink to="/social/ajustes" className="list-end__link">

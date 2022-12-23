@@ -8,11 +8,11 @@ import { PublicationList } from '../publication/PublicationList';
 
 export const Profile = () => {
 
-    const { auth} = useAuth();
+    const { auth, setCounters} = useAuth();
     const [page, setPage] = useState(1);
     const [user, setUser] = useState({});
     const [more, setMore] = useState(true);
-    const [counters, setCounters] = useState({});
+    const [countersProfile, setCountersProfile] = useState({});
     const [iFollow, setIFollow] = useState(false);
     const [publications, setPublications] = useState([]);
     const params = useParams();
@@ -30,6 +30,11 @@ export const Profile = () => {
         getPublication(1, true);
     }, [params]);
 
+    const userStorage = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    const userObj = JSON.parse(userStorage);
+    const idUser = userObj.id;
+
     const getDataUser = async () => {
         let dataUser = await GetProfile(params.userId, setUser);
         if (dataUser.following && dataUser.following._id) setIFollow(true);
@@ -41,8 +46,8 @@ export const Profile = () => {
         // if (datos.following) {
         //     setCounters(datos);
         // }
-        const dato = await PetitionFetchToken(Global.url + "user/counters/" + params.userId, "GET", localStorage.getItem("token"));
-        setCounters(dato.datos);
+        const dato = await PetitionFetchToken(Global.url + "user/counters/" + params.userId, "GET", token);
+        setCountersProfile(dato.datos);
         console.log(params.userId)
     }
 
@@ -51,25 +56,34 @@ export const Profile = () => {
             followed: userId
         };
 
-        const { datos } = await PetitionFetchToken(Global.url + "follow/save", "POST", localStorage.getItem("token"), id);
+        const { datos } = await PetitionFetchToken(Global.url + "follow/save", "POST", token, id);
 
         if (datos.status === "success") {
             setIFollow(true)
         }
+
+        const dato = await PetitionFetchToken(Global.url + "user/counters/" + idUser, "GET", token);
+        setCounters(dato.datos);
+        getCounters();
+        
     }
 
     const unfollow = async (userId) => {
 
-        const { datos } = await PetitionFetchToken(Global.url + "follow/unfollow/" + userId, "DELETE", localStorage.getItem("token"));
+        const { datos } = await PetitionFetchToken(Global.url + "follow/unfollow/" + userId, "DELETE", token);
 
         if (datos.status === "success") {
             setIFollow(false)
         }
 
+        const dato = await PetitionFetchToken(Global.url + "user/counters/" + idUser, "GET", token);
+        setCounters(dato.datos);
+        getCounters();
+
     }
 
     const getPublication = async (nextPage = 1, newProfile = false) => {
-        const { datos } = await PetitionFetchToken(Global.url + "publication/user/" + params.userId + "/" + nextPage, "GET", localStorage.getItem("token"));
+        const { datos } = await PetitionFetchToken(Global.url + "publication/user/" + params.userId + "/" + nextPage, "GET", token);
 
         if (datos.status === "success") {
             let newPublication = datos.publications;
@@ -127,13 +141,13 @@ export const Profile = () => {
                     <div className="stats__following">
                         <Link to={"/social/siguiendo/" + user._id} className="following__link">
                             <span className="following__title">Siguiendo</span>
-                            <span className="following__number">{counters.following >= 1 ? counters.following : 0}</span>
+                            <span className="following__number">{countersProfile.following >= 1 ? countersProfile.following : 0}</span>
                         </Link>
                     </div>
                     <div className="stats__following stats__following--medio">
                         <Link to={"/social/seguidores/" + user._id} className="following__link">
                             <span className="following__title">Seguidores</span>
-                            <span className="following__number">{counters.followed >= 1 ? counters.followed : 0}</span>
+                            <span className="following__number">{countersProfile.followed >= 1 ? countersProfile.followed : 0}</span>
                         </Link>
                     </div>
 
@@ -141,7 +155,7 @@ export const Profile = () => {
                     <div className="stats__following">
                         <Link to={"/social/perfil/" + user._id} className="following__link">
                             <span className="following__title">Publicaciones</span>
-                            <span className="following__number">{counters.publications >= 1 ? counters.publications : 0}</span>
+                            <span className="following__number">{countersProfile.publications >= 1 ? countersProfile.publications : 0}</span>
                         </Link>
                     </div>
 
@@ -149,7 +163,7 @@ export const Profile = () => {
                 </div>
             </header>
 
-            <PublicationList publications={publications} getPublication={getPublication}
+            <PublicationList publications={publications} getPublication={getPublication} setCounter={setCounters}
                 page={page} setPage={setPage} more={more} setMore={setMore} idUser={params.userId} />
 
         </>

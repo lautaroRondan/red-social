@@ -8,9 +8,9 @@ import useAuth from '../../hooks/useAuth';
 import ReactTimeAgo from 'react-time-ago';
 
 
-export const PublicationList = ({ publications, getPublication, page, setPage, more, setMore, idUser }) => {
+export const PublicationList = ({ publications, getPublication, setCounters, page, setPage, more, setMore, idUser }) => {
 
-    const { auth, setCounters  } = useAuth();
+    const { auth  } = useAuth();
 
     const token = localStorage.getItem("token");
 
@@ -30,6 +30,7 @@ export const PublicationList = ({ publications, getPublication, page, setPage, m
 
         const dato = await PetitionFetchToken(Global.url + "user/counters/" + idUser, "GET", token);
         setCounters(dato.datos);
+   
     }
 
 

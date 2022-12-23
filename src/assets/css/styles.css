@@ -516,6 +516,11 @@ button{
     border-radius: 3px;
 }
 
+.alert-setting{
+    width: 100%;
+    justify-content: space-around;
+}
+
 .alert-p{
     width: 85%;
 }
@@ -556,10 +561,8 @@ margin-left: 3%;
 }
 
 .nav_logo {
-    font-weight: bold;
     font-size: 20px;
     margin: 15px;
-    color: white;
 }
 
 .nav_items NavLink {
