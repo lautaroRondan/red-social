@@ -42,7 +42,12 @@ export const Config = () => {
         setSaved("saved");
 
       } else {
-        setSaved("error");
+        if(imageP.datos.messague === "imagen invalida"){
+          setSaved("extencion")
+        }else{
+          setSaved("error");
+        }
+
       }
     }
   }
@@ -60,6 +65,9 @@ export const Config = () => {
             : ""}
           {saved == "error" ?
             <strong className='alert alert-danger alert-setting'> "Los datos proporcionasdos son incorrectos" </strong>
+            : ""}
+            {saved == "extencion" ?
+            <strong className='alert alert-danger alert-setting'> "Formato de la imagen invalida" </strong>
             : ""}
 
           <form className='config-form' onSubmit={updateUser}>
