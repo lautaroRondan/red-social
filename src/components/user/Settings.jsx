@@ -36,7 +36,7 @@ export const Config = () => {
       const formData = new FormData();
       formData.append("image", fileInput.files[0]);
 
-      const imageP = await PetitionFetchToken(Global.url + "user/upload/", "POST", token, formData);
+      const imageP = await PetitionFetchToken(Global.url + "user/upload/", "POST", token, formData, true);
 
       if (imageP.datos.status === "success") {
         setSaved("saved");
