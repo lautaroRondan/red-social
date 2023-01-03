@@ -70,6 +70,7 @@ export const PetitionFetchToken = async (url, metodo, token, datosGuardar = "", 
         method: metodo,
         body: datosGuardar,
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Authorization": token
         },
       };
