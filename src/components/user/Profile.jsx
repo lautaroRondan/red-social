@@ -41,14 +41,9 @@ export const Profile = () => {
     }
 
     const getCounters = async () => {
-        // const { datos } = await PetitionFetchToken(Global.url + "user/counters/" + params.userId, "GET", localStorage.getItem("token"));
-
-        // if (datos.following) {
-        //     setCounters(datos);
-        // }
         const dato = await PetitionFetchToken(Global.url + "user/counters/" + params.userId, "GET", token);
         setCountersProfile(dato.datos);
-        console.log(params.userId)
+        
     }
 
     const follow = async (userId) => {

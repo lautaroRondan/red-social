@@ -34,7 +34,7 @@ export const PetitionFetch = async (url, metodo, datosGuardar = "", archivos = f
 
   const peticion = await fetch(url, opciones);
   const datos = await peticion.json();
-  console.log(datos);
+  // console.log(datos);
   cargando = false;
 
   return {
@@ -88,7 +88,7 @@ export const PetitionFetchToken = async (url, metodo, token, datosGuardar = "", 
 
   const peticion = await fetch(url, opciones);
   const datos = await peticion.json();
-  console.log(datos);
+  // console.log(datos);
   cargando = false;
 
   return {

@@ -12,8 +12,6 @@ export const Register = () => {
     const saveUser = async (e) => {
         e.preventDefault();
         let newUser = form;
-        console.log(newUser)
-
 
         const { datos } = await PetitionFetch(Global.url + "user/register", "POST", newUser);
         if (datos.status === "success") {
